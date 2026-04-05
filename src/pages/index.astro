@@ -1,17 +1,735 @@
 ---
+import ExperienceTimeline from '../components/ExperienceTimeline.jsx';
+import ProjectShowcase from '../components/ProjectShowcase.jsx';
+import ScrollReveal from '../components/ScrollReveal.jsx';
 
+const photos = [
+  {
+    src: "/images/gardens_by_bay.JPG",
+    location: "Singapore | Aug 18, 2025",
+    caption: "Gardens by the Bay"
+  },
+  {
+    src: "/images/golden_bridge.JPG",
+    location: "Da Nang, Vietnam | Sep 23, 2025",
+    caption: "Golden Bridge"
+  },
+  {
+    src: "/images/korea_market.JPG",
+    location: "Seoul, South Korea | Nov 16, 2025",
+    caption: "Mongwan Market"
+  },
+  {
+    src: "/images/spirited_away.JPG",
+    location: "New Taipei City, Taiwan | Nov 27, 2025",
+    caption: "Jiufen (Spirited Away)"
+  },
+  {
+    src: "/images/tokyo_street.JPG",
+    location: "Tokyo, Japan | Nov 20, 2025",
+    caption: "Ota City Street View"
+  },
+  {
+    src: "/images/kyoto.JPG",
+    location: "Kyoto, Japan | Nov 23, 2025",
+    caption: "Fushimi Inari Shrine"
+  },
+  {
+    src: "/images/twin_towers.JPG",
+    location: "Kuala Lumpur, Malaysia | Sep 6, 2025",
+    caption: "Petronas Twin Towers"
+  },
+  {
+    src: "/images/bangkok.jpg",
+    location: "Bangkok, Thailand | Sep 26, 2025",
+    caption: "Tichuca Rooftop Bar"
+  },
+  {
+    src: "/images/malaysia_temple.JPG",
+    location: "Kuala Lumpur, Malaysia | Sep 7, 2025",
+    caption: "Batu Caves"
+  },
+  {
+    src: "/images/met_new_york.JPG",
+    location: "New York City, New York | Mar 22, 2025",
+    caption: "The Metropolitan Museum of Art"
+  },
+  {
+    src: "/images/AP_farming.jpg",
+    location: "Andra Pradesh, India | Dec 15, 2025",
+    caption: "Farming"
+  },
+  {
+    src: "/images/AP_herding.jpg",
+    location: "Andra Pradesh, India | Jul 24, 2023",
+    caption: "Goat Herding"
+  },
+  {
+    src: "/images/bali.jpg",
+    location: "Bali, Indonesia | Nov 2, 2025",
+    caption: "Fishing Beachside"
+  },
+  {
+    src: "/images/dmz.jpg",
+    location: "North Korea | Nov 18, 2025",
+    caption: "Demilitarized Zone (DMZ)"
+  },
+  {
+    src: "/images/red_rivalry.JPG",
+    location: "Texas, USA | Dec 15, 2024",
+    caption: "Red Rivalry Game (UT vs OU)"
+  }
+];
+
+const skills = [
+  "Java", "Python", "JavaScript", "TypeScript",
+  "AWS", "React", "React Native", "Swift", "APIs",
+  "SQL", "Firebase", "Software Development",
+  "Artificial Intelligence", "Machine Learning"
+];
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Abhiram Gadde — Software Development Engineer & Photographer based in Austin, TX." />
+  <title>Abhiram Gadde</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --ink:        #0e0e0c;
+      --cream:      #f5f2eb;
+      --warm-gray:  #b8b4aa;
+      --amber:      #c8872a;
+      --amber-lt:   #e8a84a;
+      --surface:    #161612;
+      --surface2:   #1e1d18;
+      --border:     rgba(200,195,185,0.12);
+      --serif:      'Playfair Display', Georgia, serif;
+      --mono:       'DM Mono', 'Courier New', monospace;
+      --sans:       'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+		background: var(--ink);
+		color: var(--cream);
+		scroll-behavior: smooth;
+      	scroll-padding-top: 110px;
+	}
+
+    body {
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ─────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      background: rgba(14,14,12,0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 20px;
+      color: var(--cream);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--cream); }
+
+    /* ── HERO ─────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end; /* Pushes content to the bottom */
+      align-items: flex-start;   /* Aligns content to the left */
+      text-align: left;          /* Left-justifies text */
+      padding: 120px 6% 80px 6%; /* Adds breathing room around the edges */
+      position: relative;
+      
+      /* Darker gradient at the bottom for text readability */
+      background: 
+        linear-gradient(to bottom, rgba(14, 14, 12, 0.1) 0%, rgba(14, 14, 12, 0.6) 60%, rgba(14, 14, 12, 0.95) 100%),
+        url('/images/profile.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    /* New wrapper to keep text contained in the lower left quadrant */
+    .hero-content {
+      max-width: 750px; 
+      width: 100%;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 11px;
+	  font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start; /* Left aligned */
+      gap: 14px;
+
+	  text-shadow: 
+        0px 1px 3px rgba(0, 0, 0, 0.9), 
+        0px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+    
+    /* Only one line on the left side now */
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--amber);
+      opacity: 0.7;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(52px, 9vw, 104px);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.025em;
+      color: var(--cream);
+      margin-bottom: 0;
+    }
+    h1 em { 
+      font-style: italic; 
+      color: var(--amber-lt); 
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--warm-gray);
+      margin-top: 28px;
+      max-width: 600px;
+      font-weight: 300;
+      line-height: 1.9;
+    }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start; /* Left aligned */
+      gap: 28px;
+      margin-top: 44px;
+      flex-wrap: wrap;
+    }
+
+    .hero-location {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--warm-gray);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-location svg { 
+      opacity: 0.55; 
+      flex-shrink: 0; 
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border: 1px solid rgba(200,135,42,0.4);
+      color: var(--amber-lt);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: rgba(14, 14, 12, 0.4);
+      backdrop-filter: blur(4px);
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .cta-btn:hover {
+      background: rgba(200,135,42,0.15);
+      border-color: var(--amber);
+    }
+
+    .skills-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start; /* Left aligned */
+      gap: 8px;
+      margin-top: 40px;
+    }
+    .skill-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border: 1px solid rgba(200,195,185,0.2);
+      background: rgba(14, 14, 12, 0.4);
+      backdrop-filter: blur(4px);
+      color: var(--warm-gray);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .skill-tag:hover { 
+      border-color: rgba(200,135,42,0.5); 
+      color: var(--amber-lt); 
+    }
+
+    /* ── SHARED SECTION CHROME ────────────────────────────── */
+    section {
+      padding: 100px 48px;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 52px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+      max-width: 72px;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 54px);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: var(--cream);
+    }
+    h2 em { font-style: italic; color: var(--amber-lt); }
+
+    /* ── EXPERIENCE ───────────────────────────────────────── */
+    #experience { background: var(--surface); }
+
+    .exp-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 68px;
+      align-items: end;
+    }
+    .exp-intro {
+      font-size: 14px;
+      color: var(--warm-gray);
+      line-height: 1.9;
+      font-weight: 300;
+    }
+
+    /* ExperienceTimeline overrides */
+    /* (handled inside the component via className props) */
+
+    /* ── PROJECTS ─────────────────────────────────────────── */
+    #projects { background: var(--ink); }
+
+    .projects-header {
+      margin-bottom: 52px;
+    }
+
+    /* ProjectShowcase overrides */
+
+    /* ── PREMIUM MASONRY GALLERY ──────────────────────────── */
+    #gallery { 
+      background: var(--surface); 
+      overflow: hidden; 
+    }
+
+    .gallery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      gap: 32px;
+    }
+    
+    .gallery-note {
+      font-size: 13px;
+      color: var(--warm-gray);
+      max-width: 320px;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    /* The core CSS Columns masonry setup */
+    .masonry-grid {
+      column-count: 1; /* 1 column on mobile phones */
+      column-gap: 4px;
+      
+      /* New constraints to keep the grid from getting too wide */
+      max-width: 1600px; 
+      margin: 0 auto; 
+    }
+    
+    @media (min-width: 640px) {
+      .masonry-grid { column-count: 2; } /* 2 columns on tablets */
+    }
+    
+    @media (min-width: 1024px) {
+      .masonry-grid { column-count: 4; } /* 4 columns on standard desktops */
+    }
+    
+    @media (min-width: 1536px) {
+      .masonry-grid { column-count: 5; } /* 5 columns on ultra-wide monitors */
+    }
+
+    .masonry-item {
+      break-inside: avoid; /* Prevents photos from being cut in half across columns */
+      margin-bottom: 4px;  /* Matches the column gap */
+    }
+
+    /* Inner wrapper for hover states and positioning */
+    .photo-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--surface2);
+      border-radius: 2px; /* Very subtle rounding */
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: auto; /* Allows natural aspect ratio to dictate height */
+      display: block;
+      opacity: 0.85;
+      transition: opacity 0.45s, transform 0.55s;
+    }
+    
+    .photo-card:hover img {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    .photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(14,14,12,0.7) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .photo-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 32px;
+      transform: translateY(12px);
+      opacity: 0;
+      transition: transform 0.35s ease-out, opacity 0.35s ease-out;
+      pointer-events: none;
+    }
+    
+    .photo-card:hover .photo-info { 
+      transform: translateY(0); 
+      opacity: 1;
+    }
+
+    .photo-location {
+      font-family: var(--mono);
+	  font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 8px;
+
+	  text-shadow: 
+        0px 1px 3px rgba(0, 0, 0, 0.9), 
+        0px 2px 8px rgba(0, 0, 0, 0.6);
+    }
+    
+    .photo-caption {
+      font-family: var(--serif);
+      font-size: 18px;
+      color: var(--cream);
+      font-style: italic;
+      line-height: 1.3;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────── */
+    footer {
+      padding: 56px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--ink);
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-name {
+      font-family: var(--serif);
+      font-size: 22px;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--warm-gray);
+      opacity: 0.45;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--amber); }
+
+    /* ── HERO PHOTO ───────────────────────────────────────── */
+    .hero-photo {
+      position: absolute;
+      right: 120px;
+      bottom: 72px;
+      width: 220px;
+      height: 290px;
+      overflow: hidden;
+      border: 1px solid rgba(200,135,42,0.2);
+      filter: grayscale(15%);
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0.88;
+      transition: opacity 0.4s, transform 0.5s;
+    }
+
+    .hero-photo:hover img {
+      opacity: 1;
+      transform: scale(1.03);
+    }
+
+    /* Subtle amber corner accent */
+    .hero-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 1px solid rgba(200,135,42,0.15);
+      pointer-events: none;
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────────────── */
+    @media (max-width: 768px) {
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      #hero { padding: 100px 24px 60px; }
+      section { padding: 72px 24px; }
+      .exp-header { grid-template-columns: 1fr; gap: 24px; }
+      .photo-grid { grid-template-columns: 1fr 1fr; }
+      .photo-item:first-child { grid-column: 1 / -1; grid-row: span 1; }
+      .photo-item.wide { grid-column: span 1; }
+      footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; }
+      .hero-rule, .hero-scroll, .hero-photo { display: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">AG.</a>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div id="hero">
+    <div class="hero-content">
+      <ScrollReveal client:load delay={0.05}>
+        <div class="hero-eyebrow">Software Engineer & Photographer</div>
+      </ScrollReveal>
+
+      <ScrollReveal client:load delay={0.1}>
+        <h1>Abhiram<br /><em>Gadde.</em></h1>
+      </ScrollReveal>
+
+      <ScrollReveal client:load delay={0.2}>
+        <p class="hero-sub">
+          Hey there! I’m Abhiram Gadde, a SWE @ Amazon and UT Austin alum. I’m diving deep into full-stack development—learning, building, and growing through classes, student orgs, coding challenges, and internships. In my free time, I like playing video games like Valorant and Rocket League as well as sports like basketball, pickleball, and spikeball.
+        </p>
+      </ScrollReveal>
+
+      <ScrollReveal client:load delay={0.3}>
+        <div class="hero-meta">
+          <div class="hero-location">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            Austin, TX
+          </div>
+          <a href="/resume.pdf" class="cta-btn" download>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+              <polyline points="7,10 12,15 17,10"/>
+              <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Download Résumé
+          </a>
+        </div>
+      </ScrollReveal>
+
+      <ScrollReveal client:load delay={0.4}>
+        <div class="skills-strip">
+          {skills.map(s => <span class="skill-tag">{s}</span>)}
+        </div>
+      </ScrollReveal>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-label">Work History</div>
+
+    <div class="exp-header">
+      <ScrollReveal client:visible delay={0.05}>
+        <h2>Where I've<br /><em>contributed.</em></h2>
+      </ScrollReveal>
+      <ScrollReveal client:visible delay={0.15}>
+        <p class="exp-intro">
+          Three years of building real systems at scale — from ML pipelines for IoT devices
+          to data infrastructure supporting hundreds of billions in transactions.
+        </p>
+      </ScrollReveal>
+    </div>
+
+    <ExperienceTimeline client:visible />
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">Selected Work</div>
+
+    <ScrollReveal client:visible delay={0.05}>
+      <div class="projects-header">
+        <h2>Things I've<br /><em>built.</em></h2>
+      </div>
+    </ScrollReveal>
+
+    <ProjectShowcase client:visible />
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="section-label">Through the Lens</div>
+
+    <ScrollReveal client:visible delay={0.05}>
+      <div class="gallery-header">
+        <h2>Life outside<br /><em>the IDE.</em></h2>
+        <p class="gallery-note">
+          A collection of moments from outside the terminal taken during my travels.
+        </p>
+      </div>
+    </ScrollReveal>
+
+    <div class="masonry-grid">
+      {photos.map((photo, index) => (
+        <div class="masonry-item">
+          {/* Staggering the animation delay by column (0, 0.1, 0.2) */}
+          <ScrollReveal client:visible delay={0.1 * (index % 3)}>
+            <div class="photo-card">
+              <img
+                src={photo.src}
+                alt={photo.location}
+                loading="lazy"
+              />
+              <div class="photo-overlay"></div>
+              <div class="photo-info">
+                <div class="photo-location">{photo.location}</div>
+                <div class="photo-caption">{photo.caption}</div>
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div>
+      <div class="footer-name">Abhiram Gadde</div>
+      <div class="footer-copy">© 2026 · All rights reserved.</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="mailto:argadde@gmail.com">Email</a></li>
+      <li><a href="https://github.com/argadde" target="_blank" rel="noopener">GitHub</a></li>
+      <li><a href="https://linkedin.com/in/argadde" target="_blank" rel="noopener">LinkedIn</a></li>
+    </ul>
+  </footer>
+
+</body>
 </html>
