@@ -3,8 +3,6 @@ import ExperienceTimeline from '../components/ExperienceTimeline.jsx';
 import ProjectShowcase from '../components/ProjectShowcase.jsx';
 import ScrollReveal from '../components/ScrollReveal.jsx';
 
-const basePath = import.meta.env.BASE_URL;
-
 const photos = [
   {
     src: "/images/gardens_by_bay.JPG",
@@ -704,7 +702,7 @@ const skills = [
           <ScrollReveal client:visible delay={0.1 * (index % 3)}>
             <div class="photo-card">
               <img
-                src={`${basePath}${photo.src.replace(/^\//, '')}`}
+                src={photo.src}
                 alt={photo.location}
                 loading="lazy"
               />
