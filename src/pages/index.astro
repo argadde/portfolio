@@ -3,7 +3,7 @@ import ExperienceTimeline from '../components/ExperienceTimeline.jsx';
 import ProjectShowcase from '../components/ProjectShowcase.jsx';
 import ScrollReveal from '../components/ScrollReveal.jsx';
 
-const basePath = import.meta.env.base;
+const basePath = import.meta.env.BASE_URL;
 
 const photos = [
   {
@@ -620,7 +620,7 @@ const skills = [
 
       <ScrollReveal client:load delay={0.2}>
         <p class="hero-sub">
-          Hey there! I’m Abhiram Gadde, a SWE @ Amazon and UT Austin alum. I’m diving deep into full-stack development—learning, building, and growing through classes, student orgs, coding challenges, and internships. In my free time, I like playing video games like Valorant and Rocket League as well as sports like basketball, pickleball, and spikeball.
+          Hey there! I’m Abhiram Gadde {basePath}, a SWE @ Amazon and UT Austin alum. I’m diving deep into full-stack development—learning, building, and growing through classes, student orgs, coding challenges, and internships. In my free time, I like playing video games like Valorant and Rocket League as well as sports like basketball, pickleball, and spikeball.
         </p>
       </ScrollReveal>
 
