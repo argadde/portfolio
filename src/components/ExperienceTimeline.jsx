@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import amazonLogo from '../assets/amazon_logo.png';
 import signifyLogo from '../assets/signify_logo.png';
 import untLogo from '../assets/unt_logo.png';
+// import tucgLogo from '../assets/tucg_logo.png'
 
 const experiences = [
   {
@@ -12,7 +13,7 @@ const experiences = [
     role: "Software Development Engineer Intern",
     date: "May 2025",
     dateTo: "Aug 2025",
-    description: "Architected high-throughput data pipelines using AWS Lambda and DynamoDB. Processed asynchronous updates for 10,000+ regulations, ensuring strict consistency for systems supporting $400B in annual transactions.",
+    description: "Architected and implemented high-throughput data pipelines using AWS Lambda and DynamoDB. Developed full-stack features to automate regulatory compliance updates, ensuring strict data consistency for financial systems processing $400B in annual transactions.",
     dotColor: "#F90"
   },
   {
@@ -21,7 +22,7 @@ const experiences = [
     role: "Data Analytics Intern",
     date: "Jul 2024",
     dateTo: "Aug 2024",
-    description: "Engineered complex Snowflake SQL queries to build automated data pipelines. Replaced manual reporting for 100+ stakeholders, improving data-driven decision speed by 15%.",
+    description: "Engineered complex Microsoft Power BI dashboards to build automated data pipelines and reporting solutions. Replaced manual data processes for 100+ stakeholders, improving the speed of data-driven decision-making by 15% across the organization.",
     dotColor: "#44bb66"
   },
   {
@@ -30,7 +31,7 @@ const experiences = [
     role: "Undergraduate Research Fellow",
     date: "Sep 2021",
     dateTo: "Jun 2023",
-    description: "Optimized CNN architectures for resource-constrained IoT devices, achieving a 28% reduction in computational energy usage while maintaining a 77% model accuracy threshold.",
+    description: "Conducted research on optimizing CNN architectures for resource-constrained IoT devices. Successfully reduced computational energy usage by 28% while maintaining a 77% model accuracy threshold for real-time applications.",
     dotColor: "#4499ff"
   }
 ];
@@ -96,8 +97,8 @@ export default function ExperienceTimeline() {
                   src={exp.logo.src || exp.logo} 
                   alt={`${exp.company} logo`}
                   style={{ 
-                    maxHeight: '22px',
-                    maxWidth: '150px',
+                    maxHeight: '25px',
+                    maxWidth: '175px',
                     width: 'auto',
                     height: 'auto',
                     objectFit: 'contain',
