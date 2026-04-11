@@ -11,7 +11,7 @@ const projects = [
     description:
       'ML platform automating bank statement analysis. Hybrid pipeline combining Random Forest and GPT-4o to parse and classify transactions into 12 financial categories with 94% accuracy.',
     icon: Cpu,
-    link: 'https://github.com/argadde'
+    link: 'https://github.com/argadde/finflow-ml-powered-financial-insights'
   },
   {
     id: 'aligo',
@@ -21,7 +21,7 @@ const projects = [
     description:
       'Native iOS application managing multiple credit cards. Displays detailed transaction histories and benefits for 100+ different cards to help users optimize spending patterns and rewards.',
     icon: Smartphone,
-    link: 'https://github.com/argadde'
+    link: 'https://github.com/argadde/Aligo'
   },
   {
     id: 'sleephelper',
@@ -31,7 +31,7 @@ const projects = [
     description:
       'Full-stack IoT system synchronizing wearable data with environmental sensors. XGBoost ML pipeline on AWS Lambda for sleep-stage classification and closed-loop control of smart actuators.',
     icon: Activity,
-    link: 'https://github.com/argadde'
+    link: 'https://github.com/argadde/the-sleep-helper'
   }
 ];
 
