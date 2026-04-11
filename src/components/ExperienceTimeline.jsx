@@ -1,9 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
+import amazonLogo from '../assets/amazon_logo.png';
+import signifyLogo from '../assets/signify_logo.png';
+import untLogo from '../assets/unt_logo.png';
+
 const experiences = [
   {
     company: "Amazon",
+    logo: amazonLogo,
     role: "Software Development Engineer Intern",
     date: "May 2025",
     dateTo: "Aug 2025",
@@ -12,6 +17,7 @@ const experiences = [
   },
   {
     company: "Signify Health (acq. by CVS Health)",
+    logo: signifyLogo,
     role: "Data Analytics Intern",
     date: "Jul 2024",
     dateTo: "Aug 2024",
@@ -20,6 +26,7 @@ const experiences = [
   },
   {
     company: "University of North Texas",
+    logo: untLogo,
     role: "Undergraduate Research Fellow",
     date: "Sep 2021",
     dateTo: "Jun 2023",
@@ -72,7 +79,7 @@ export default function ExperienceTimeline() {
               marginBottom: '10px',
               display: 'flex',
               alignItems: 'center',
-              gap: '8px'
+              gap: '12px' // Increased gap slightly to accommodate the image
             }}>
               <span style={{
                 display: 'inline-block',
@@ -82,7 +89,24 @@ export default function ExperienceTimeline() {
                 background: exp.dotColor,
                 flexShrink: 0
               }} />
-              {exp.company}
+              
+              {/* Logo Rendering Logic */}
+              {exp.logo ? (
+                <img 
+                  src={exp.logo.src || exp.logo} 
+                  alt={`${exp.company} logo`}
+                  style={{ 
+                    maxHeight: '22px',
+                    maxWidth: '150px',
+                    width: 'auto',
+                    height: 'auto',
+                    objectFit: 'contain',
+                    opacity: 0.95
+                  }} 
+                />
+              ) : (
+                exp.company
+              )}
             </div>
 
             <h3 style={{
